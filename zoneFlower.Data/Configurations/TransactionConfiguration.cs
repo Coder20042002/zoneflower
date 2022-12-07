@@ -2,10 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Transactions;
+using zoneFlower.Data.Entities;
 
 namespace zoneFlower.Data.Configurations
 {
@@ -19,7 +17,7 @@ namespace zoneFlower.Data.Configurations
 
             builder.Property(x => x.Id).UseIdentityColumn();
 
-            builder.HasOne(x => x.AppUser).WithMany(x => x.Transactions).HasForeignKey(x => x.UserId);
+            
 
         }
     }

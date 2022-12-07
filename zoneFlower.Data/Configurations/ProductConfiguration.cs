@@ -9,7 +9,7 @@ using zoneFlower.Data.Entities;
 
 namespace zoneFlower.Data.Configurations
 {
-    public class ProductConfiguraton : IEntityTypeConfiguration<Product>
+    public class ProductConfiguration : IEntityTypeConfiguration<Product>
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
