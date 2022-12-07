@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,7 +21,7 @@ namespace zoneFlower.Data.Entities
 
         public Guid UserId { get; set; }
 
-        public AppUser AppUser { get; set; }
+        
 
     }
 }
