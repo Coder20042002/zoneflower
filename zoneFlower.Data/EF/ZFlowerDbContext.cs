@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using zoneFlower.Data.Configurations;
 using zoneFlower.Data.Entities;
+using zoneFlower.Data.Extensions;
 
 namespace zoneFlower.Data.EF
 {
@@ -18,6 +20,7 @@ namespace zoneFlower.Data.EF
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //Config fluent api
             modelBuilder.ApplyConfiguration(new CartConfiguration());
 
             modelBuilder.ApplyConfiguration(new AppConfigConfiguration());
@@ -38,7 +41,11 @@ namespace zoneFlower.Data.EF
             modelBuilder.ApplyConfiguration(new AppRoleConfiguration());
             modelBuilder.ApplyConfiguration(new ProductImageConfiguration());
             modelBuilder.ApplyConfiguration(new SlideConfiguration());
-
+            //Data seeding
+            /*modelBuilder.Entity<AppConfig>().HasData(
+                new AppConfig() { Key = "Home title", Value = "This is home page of zFlower" }
+                );*/
+            modelBuilder.Seed();
         }
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
