@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +15,10 @@ namespace zoneFlower.Data.Extensions
         public static void Seed(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AppConfig>().HasData(
-               new AppConfig() { Key = "HomeTitle", Value = "This is home page of zoneFlower" },
-               new AppConfig() { Key = "HomeKeyword", Value = "This is keyword of  zoneFlower" },
-               new AppConfig() { Key = "HomeDescription", Value = "This is description of  zoneFlower" }
-               );
+              new AppConfig() { Key = "HomeTitle", Value = "This is home page of eShopSolution" },
+              new AppConfig() { Key = "HomeKeyword", Value = "This is keyword of eShopSolution" },
+              new AppConfig() { Key = "HomeDescription", Value = "This is description of eShopSolution" }
+              );
             modelBuilder.Entity<Language>().HasData(
                 new Language() { Id = "vi", Name = "Tiếng Việt", IsDefault = true },
                 new Language() { Id = "en", Name = "English", IsDefault = false });
@@ -86,9 +87,38 @@ namespace zoneFlower.Data.Extensions
                 new ProductInCategory() { ProductId = 1, CategoryId = 1 }
                 );
 
-          
+            // any guid
+            var roleId = new Guid("8D04DCE2-969A-435D-BBA4-DF3F325983DC");
+            var adminId = new Guid("69BD714F-9576-45BA-B5B7-F00649BE00DE");
+            modelBuilder.Entity<AppRole>().HasData(new AppRole
+            {
+                Id = roleId,
+                Name = "admin",
+                NormalizedName = "admin",
+                Description = "Administrator role"
+            });
 
-         
+            var hasher = new PasswordHasher<AppUser>();
+            modelBuilder.Entity<AppUser>().HasData(new AppUser
+            {
+                Id = adminId,
+                UserName = "admin",
+                NormalizedUserName = "admin",
+                Email = "tedu.international@gmail.com",
+                NormalizedEmail = "tedu.international@gmail.com",
+                EmailConfirmed = true,
+                PasswordHash = hasher.HashPassword(null, "Abcd1234$"),
+                SecurityStamp = string.Empty,
+                FirstName = "Toan",
+                LastName = "Bach",
+                Dob = new DateTime(2020, 01, 31)
+            });
+
+            modelBuilder.Entity<IdentityUserRole<Guid>>().HasData(new IdentityUserRole<Guid>
+            {
+                RoleId = roleId,
+                UserId = adminId
+            });
 
             modelBuilder.Entity<Slide>().HasData(
               new Slide() { Id = 1, Name = "Second Thumbnail label", Description = "Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.", SortOrder = 1, Url = "#", Image = "/themes/images/carousel/1.png", Status = Status.Active },

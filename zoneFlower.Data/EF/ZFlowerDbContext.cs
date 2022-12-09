@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
@@ -11,7 +13,7 @@ using zoneFlower.Data.Extensions;
 
 namespace zoneFlower.Data.EF
 {
-    public class ZFlowerDbContext : DbContext
+    public class ZFlowerDbContext : IdentityDbContext<AppUser,AppRole,Guid>
     {
         public ZFlowerDbContext(DbContextOptions options) : base(options)
         {
@@ -37,10 +39,18 @@ namespace zoneFlower.Data.EF
             modelBuilder.ApplyConfiguration(new PromotionConfiguration());
             modelBuilder.ApplyConfiguration(new TransactionConfiguration());
 
-           
+            modelBuilder.ApplyConfiguration(new AppUserConfiguration());
             modelBuilder.ApplyConfiguration(new AppRoleConfiguration());
             modelBuilder.ApplyConfiguration(new ProductImageConfiguration());
             modelBuilder.ApplyConfiguration(new SlideConfiguration());
+
+            modelBuilder.Entity<IdentityUserClaim<Guid>>().ToTable("AppUserClaims");
+            modelBuilder.Entity<IdentityUserRole<Guid>>().ToTable("AppUserRoles").HasKey(x => new { x.UserId, x.RoleId });
+            modelBuilder.Entity<IdentityUserLogin<Guid>>().ToTable("AppUserLogins").HasKey(x => x.UserId);
+
+            modelBuilder.Entity<IdentityRoleClaim<Guid>>().ToTable("AppRoleClaims");
+            modelBuilder.Entity<IdentityUserToken<Guid>>().ToTable("AppUserTokens").HasKey(x => x.UserId);
+
             //Data seeding
             /*modelBuilder.Entity<AppConfig>().HasData(
                 new AppConfig() { Key = "Home title", Value = "This is home page of zFlower" }
@@ -64,7 +74,6 @@ namespace zoneFlower.Data.EF
         public DbSet<Order> Orders { get; set; }
 
         public DbSet<OrderDetail> OrderDetails { get; set; }
-
         public DbSet<ProductTranslation> ProductTranslations { get; set; }
 
         public DbSet<Promotion> Promotions { get; set; }
