@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using zoneFlower.Data.Enums;
 
 namespace zoneFlower.Data.Entities
 {
-    public class AppRole 
+    public class AppRole : IdentityRole<Guid>
     {
         public string Description { get; set; }
     }

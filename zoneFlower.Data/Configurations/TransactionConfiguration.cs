@@ -17,7 +17,8 @@ namespace zoneFlower.Data.Configurations
 
             builder.Property(x => x.Id).UseIdentityColumn();
 
-            
+            builder.HasOne(x=>x.AppUser).WithMany(x=>x.Transactions).HasForeignKey(x=>x.UserId);
+
 
         }
     }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using zoneFlower.Data.EF;
 
@@ -11,9 +12,11 @@ using zoneFlower.Data.EF;
 namespace zoneFlower.Data.Migrations
 {
     [DbContext(typeof(ZFlowerDbContext))]
-    partial class ZFlowerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221209112106_AspNetCoreIdentity")]
+    partial class AspNetCoreIdentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -97,13 +100,6 @@ namespace zoneFlower.Data.Migrations
                     b.HasKey("UserId", "RoleId");
 
                     b.ToTable("AppUserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"),
-                            RoleId = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc")
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
@@ -143,26 +139,22 @@ namespace zoneFlower.Data.Migrations
                         new
                         {
                             Key = "HomeTitle",
-                            Value = "This is home page of eShopSolution"
+                            Value = "This is home page of zoneFlower"
                         },
                         new
                         {
                             Key = "HomeKeyword",
-                            Value = "This is keyword of eShopSolution"
+                            Value = "This is keyword of  zoneFlower"
                         },
                         new
                         {
                             Key = "HomeDescription",
-                            Value = "This is description of eShopSolution"
+                            Value = "This is description of  zoneFlower"
                         });
                 });
 
             modelBuilder.Entity("zoneFlower.Data.Entities.AppRole", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("ConcurrencyStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -171,25 +163,16 @@ namespace zoneFlower.Data.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
-
                     b.ToTable("AppRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc"),
-                            ConcurrencyStamp = "755b2595-1944-4ef7-868e-7e6ea2b0b06d",
-                            Description = "Administrator role",
-                            Name = "admin",
-                            NormalizedName = "admin"
-                        });
                 });
 
             modelBuilder.Entity("zoneFlower.Data.Entities.AppUser", b =>
@@ -256,27 +239,6 @@ namespace zoneFlower.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AppUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"),
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "dcd908ef-f5d0-4869-97f5-41943967768e",
-                            Dob = new DateTime(2020, 1, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "tedu.international@gmail.com",
-                            EmailConfirmed = true,
-                            FirstName = "Toan",
-                            LastName = "Bach",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "tedu.international@gmail.com",
-                            NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAELto0Xn3NjevGmk8WNJ24Nc3uP5EhtvNh8f7tMdF6tnuanxQ6ox5HVK0R8QoFQ+ZeQ==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "",
-                            TwoFactorEnabled = false,
-                            UserName = "admin"
-                        });
                 });
 
             modelBuilder.Entity("zoneFlower.Data.Entities.Cart", b =>
@@ -615,7 +577,7 @@ namespace zoneFlower.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2022, 12, 9, 18, 37, 32, 755, DateTimeKind.Local).AddTicks(8821),
+                            DateCreated = new DateTime(2022, 12, 9, 18, 21, 5, 208, DateTimeKind.Local).AddTicks(8340),
                             OriginalPrice = 100000m,
                             Price = 200000m,
                             Stock = 0,
