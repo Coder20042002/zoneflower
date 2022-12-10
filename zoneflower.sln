@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "zoneFlower.Data", "zoneFlow
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "zoneFlower.Application", "zoneFlower.Application\zoneFlower.Application.csproj", "{3A2F2180-9B22-4115-9999-F83922D7AA12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zoneFlower.WebApp", "zoneFlower.WebApp\zoneFlower.WebApp.csproj", "{99BA2983-EA6C-49ED-8398-328A7D87A8E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "zoneFlower.WebApp", "zoneFlower.WebApp\zoneFlower.WebApp.csproj", "{99BA2983-EA6C-49ED-8398-328A7D87A8E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zoneFlower.Utilities", "zoneFlower.Utilities\zoneFlower.Utilities.csproj", "{1B4051E4-9E42-4AF3-BD87-487C3297E7B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{99BA2983-EA6C-49ED-8398-328A7D87A8E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99BA2983-EA6C-49ED-8398-328A7D87A8E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99BA2983-EA6C-49ED-8398-328A7D87A8E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B4051E4-9E42-4AF3-BD87-487C3297E7B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B4051E4-9E42-4AF3-BD87-487C3297E7B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B4051E4-9E42-4AF3-BD87-487C3297E7B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B4051E4-9E42-4AF3-BD87-487C3297E7B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
