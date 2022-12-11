@@ -1,25 +1,52 @@
 ﻿using Azure.Core;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Server.IISIntegration;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using zoneFlower.Application.Catalog.Products.Dtos;
-using zoneFlower.Application.Catalog.Products.Dtos.Manage;
-using zoneFlower.Application.Dtos;
+using zoneFlower.Application.Catalog.Common;
 using zoneFlower.Data.EF;
 using zoneFlower.Data.Entities;
 using zoneFlower.Utilities;
+using zoneFlower.ViewModel.Catalog.Products;
+using zoneFlower.ViewModel.Catalog.Products.Manage;
+using zoneFlower.ViewModel.Common;
 
 namespace zoneFlower.Application.Catalog.Products
 {
     public class ManageProductService : IManageProductService
     {
         private readonly ZFlowerDbContext _context;
-        public ManageProductService(ZFlowerDbContext context)
+        private readonly IStorageService _storageService;
+        public ManageProductService(ZFlowerDbContext context,IStorageService storageService)
         {
             _context = context;
+            _storageService = storageService;
+        }
+
+        public async Task<int> AddImage(int productID,ProductImageCreateRequest request)
+        {
+            var productImage = new ProductImage()
+            {
+                Caption = request.Caption,
+                DateCreated = DateTime.Now,
+                IsDefault = request.IsDefault,
+                ProductId = productID,
+                SortOrder=request.SortOrder
+            };
+            if(request.ImageFile !=null)
+            {
+                productImage.ImagePath = await this.SaveFile(request.ImageFile);
+                productImage.FileSize = request.ImageFile.Length;
+            }
+            _context.ProductImages.Add(productImage);
+            await _context.SaveChangesAsync();
+            return productImage.Id;
         }
 
         public async Task AddViewCount(int productId)
@@ -51,6 +78,22 @@ namespace zoneFlower.Application.Catalog.Products
                     }
                 }
             };
+            //Save file 
+            if(request.ThumbnailImage !=null)
+            {
+                product.ProductImages = new List<ProductImage>()
+                {
+                    new ProductImage()
+                    {
+                        Caption="Thumbnail image",
+                        DateCreated=DateTime.Now,
+                        FileSize=request.ThumbnailImage.Length,
+                        ImagePath=await this.SaveFile(request.ThumbnailImage),
+                        IsDefault=true,
+                        SortOrder=1
+                    }
+                };
+            }
             _context.Products.Add(product);
             return await _context.SaveChangesAsync();
 
@@ -60,6 +103,12 @@ namespace zoneFlower.Application.Catalog.Products
         {
             var product = await _context.Products.FindAsync(productID);
             if (product == null) throw new ZFlowerException($"Canot find a product :{productID}");
+
+            var Images =  _context.ProductImages.Where(x => x.ProductId == productID);
+            foreach(var image in Images)
+            {
+               await _storageService.DeleteFileAsync(image.ImagePath);
+            }
             _context.Products.Remove(product);
             return await _context.SaveChangesAsync();
         }
@@ -115,6 +164,16 @@ namespace zoneFlower.Application.Catalog.Products
 
         }
 
+        public Task<List<ProductImageViewModel>> GetListImage(int productId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> RemoveImage(int imageId, string caption, bool isDefault)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<int> Update(ProductUpdateRequest request)
         {
             var product = await _context.Products.FindAsync(request.Id);
@@ -128,8 +187,27 @@ namespace zoneFlower.Application.Catalog.Products
             productTranslation.SeoDescription = request.SeoDescription;
             productTranslation.SeoAlias= request.SeoAlias;
             productTranslation.Details = request.Details;
+
+            //save image
+            if (request.ThumbnailImage != null)
+            {
+                var thumbnailImage =await _context.ProductImages.FirstOrDefaultAsync(i => i.IsDefault == true && i.ProductId == i.Id);
+                if (thumbnailImage != null)
+                {
+                    thumbnailImage.FileSize = request.ThumbnailImage.Length;
+                    thumbnailImage.ImagePath = await this.SaveFile(request.ThumbnailImage);
+                    _context.ProductImages.Update(thumbnailImage);
+                }
+               
+                
+            }
             return await _context.SaveChangesAsync();
 
+        }
+
+        public Task<int> UpdateImage(int imageId)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<bool> UpdatePrice(int productID, decimal newPrice)
@@ -147,6 +225,14 @@ namespace zoneFlower.Application.Catalog.Products
             if (product == null) throw new ZFlowerException($"Canot find a product :{productID}");
             product.Stock = addedQuantity;
             return await _context.SaveChangesAsync() > 0;
+        }
+
+        private async Task<string> SaveFile(IFormFile file)
+        {
+            var originalFileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+            var fileName = $"{Guid.NewGuid()}{Path.GetExtension(originalFileName)}";
+            await _storageService.SaveFileAsync(file.OpenReadStream(), fileName);
+            return  fileName;
         }
     }
     
