@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using zoneFlower.Application.Catalog.Products.Dtos;
-using zoneFlower.Application.Catalog.Products.Dtos.Public;
-using zoneFlower.Application.Dtos;
+using zoneFlower.ViewModel.Catalog.Products;
+using zoneFlower.ViewModel.Catalog.Products.Public;
+using zoneFlower.ViewModel.Common;
 
 namespace zoneFlower.Application.Catalog.Products
 {

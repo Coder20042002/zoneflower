@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using zoneFlower.Application.Dtos;
+using zoneFlower.ViewModel.Common;
 
-namespace zoneFlower.Application.Catalog.Products.Dtos.Public
+namespace zoneFlower.ViewModel.Catalog.Products.Public
 {
-    public class GetProductPagingRequest:PagingResultBase
+    public class GetProductPagingRequest : PagingResultBase
     {
         public int? CategoryId { get; set; }
     }

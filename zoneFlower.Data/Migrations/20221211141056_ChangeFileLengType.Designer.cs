@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using zoneFlower.Data.EF;
 
@@ -11,9 +12,11 @@ using zoneFlower.Data.EF;
 namespace zoneFlower.Data.Migrations
 {
     [DbContext(typeof(ZFlowerDbContext))]
-    partial class ZFlowerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221211141056_ChangeFileLengType")]
+    partial class ChangeFileLengType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -185,7 +188,7 @@ namespace zoneFlower.Data.Migrations
                         new
                         {
                             Id = new Guid("8d04dce2-969a-435d-bba4-df3f325983dc"),
-                            ConcurrencyStamp = "09e09667-2c2e-49a4-ba65-02c5fbd6d69a",
+                            ConcurrencyStamp = "551332d5-72b6-4117-80b5-a95933e4c790",
                             Description = "Administrator role",
                             Name = "admin",
                             NormalizedName = "admin"
@@ -262,7 +265,7 @@ namespace zoneFlower.Data.Migrations
                         {
                             Id = new Guid("69bd714f-9576-45ba-b5b7-f00649be00de"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "fb870c49-abef-419a-a93e-70debf2172d9",
+                            ConcurrencyStamp = "ef2419f2-47ee-4591-b36a-29d5db67d694",
                             Dob = new DateTime(2020, 1, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "tedu.international@gmail.com",
                             EmailConfirmed = true,
@@ -271,7 +274,7 @@ namespace zoneFlower.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "tedu.international@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAENSE9cxlpx1qDvSbG0rk9vvSS+lrIv6mUdieWiOHdc3ZQDRO4pFh+XYg8t54kcYAMw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMDdJOR7hiY2+/bPYBE168Sml95BrskjdfcKaXYNBmCwwGRTflcuWDw3H+W9e97iQA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -615,7 +618,7 @@ namespace zoneFlower.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2022, 12, 11, 21, 16, 46, 563, DateTimeKind.Local).AddTicks(688),
+                            DateCreated = new DateTime(2022, 12, 11, 21, 10, 56, 167, DateTimeKind.Local).AddTicks(2465),
                             OriginalPrice = 100000m,
                             Price = 200000m,
                             Stock = 0,
