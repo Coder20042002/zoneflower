@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using zoneFlower.ViewModel.Catalog.Products;
-using zoneFlower.ViewModel.Catalog.Products.Public;
 using zoneFlower.ViewModel.Common;
 
 namespace zoneFlower.Application.Catalog.Products
