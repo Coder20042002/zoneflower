@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace zoneFlower.ViewModel.Catalog.Products.Manage
+namespace zoneFlower.ViewModel.Catalog.Products
 {
     public class ProductImageCreateRequest
     {

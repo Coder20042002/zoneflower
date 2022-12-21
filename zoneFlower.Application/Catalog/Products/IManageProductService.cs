@@ -18,7 +18,7 @@ namespace zoneFlower.Application.Catalog.Products
         public Task<bool> UpdatePrice(int productID,decimal newPrice);
         public Task<bool> UpdateStock(int productID,int addedQuantity);
         public Task AddViewCount(int productId);
-        public Task<PagedResult<ProductViewModel>> GetAllPaging(GetProductPagingRequest request);
+        public Task<PagedResult<ProductViewModel>> GetAllPaging(GetManageProductPagingRequest request);
 
         public Task<int> AddImage(int productID,List<IFormFile> files);
         public Task<int> UpdateImage(int imageId);

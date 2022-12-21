@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using zoneFlower.ViewModel.Common;
 
-namespace zoneFlower.ViewModel.Catalog.Products.Public
+namespace zoneFlower.ViewModel.Catalog.Products
 {
-    public class GetProductPagingRequest : PagingResultBase
+    public class GetPublicProductPagingRequest : PagingResultBase
     {
         public int? CategoryId { get; set; }
     }
