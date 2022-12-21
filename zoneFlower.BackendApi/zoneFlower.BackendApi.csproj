@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\zoneFlower.Application\zoneFlower.Application.csproj" />
+    <ProjectReference Include="..\zoneFlower.Data\zoneFlower.Data.csproj" />
+    <ProjectReference Include="..\zoneFlower.Utilities\zoneFlower.Utilities.csproj" />
+    <ProjectReference Include="..\zoneFlower.ViewModel\zoneFlower.ViewModel.csproj" />
+  </ItemGroup>
+
+</Project>

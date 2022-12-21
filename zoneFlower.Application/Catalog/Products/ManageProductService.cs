@@ -14,7 +14,6 @@ using zoneFlower.Data.EF;
 using zoneFlower.Data.Entities;
 using zoneFlower.Utilities;
 using zoneFlower.ViewModel.Catalog.Products;
-using zoneFlower.ViewModel.Catalog.Products.Manage;
 using zoneFlower.ViewModel.Common;
 
 namespace zoneFlower.Application.Catalog.Products
@@ -47,6 +46,11 @@ namespace zoneFlower.Application.Catalog.Products
             _context.ProductImages.Add(productImage);
             await _context.SaveChangesAsync();
             return productImage.Id;
+        }
+
+        public Task<int> AddImage(int productID, List<IFormFile> files)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task AddViewCount(int productId)
@@ -114,7 +118,7 @@ namespace zoneFlower.Application.Catalog.Products
         }
 
 
-        public async Task<PagedResult<ProductViewModel>> GetAllPaging(GetProductPagingRequest request)
+        public async Task<PagedResult<ProductViewModel>> GetAllPaging(GetManageProductPagingRequest request)
         {
             //1.Select join
             var query = from p in _context.Products
