@@ -13,7 +13,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "zoneFlower.Utilities", "zon
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "zoneFlower.ViewModel", "zoneFlower.ViewModel\zoneFlower.ViewModel.csproj", "{56253D65-A6E6-448D-B049-57BB3D6CEF44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zoneFlower.BackendApi", "zoneFlower.BackendApi\zoneFlower.BackendApi.csproj", "{922E7364-D080-48B3-AE0D-0F56B5B526DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "zoneFlower.BackendApi", "zoneFlower.BackendApi\zoneFlower.BackendApi.csproj", "{922E7364-D080-48B3-AE0D-0F56B5B526DE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Infrastructure", "1.Infrastructure", "{D1D1B120-1E5D-4494-8867-BFD54260344B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.Domain", "2.Domain", "{F593B0A5-8399-4551-ADE1-5585273EAA62}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.Host", "3.Host", "{4E1500ED-A4D5-4771-A9A9-339D9B5B6408}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0.Solution", "0.Solution", "{89F0585D-9B15-447F-853A-110CEE4F3F73}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,6 +56,14 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{61C5566A-A65A-4A24-8F81-EF0EE1C2B877} = {F593B0A5-8399-4551-ADE1-5585273EAA62}
+		{3A2F2180-9B22-4115-9999-F83922D7AA12} = {F593B0A5-8399-4551-ADE1-5585273EAA62}
+		{99BA2983-EA6C-49ED-8398-328A7D87A8E6} = {4E1500ED-A4D5-4771-A9A9-339D9B5B6408}
+		{1B4051E4-9E42-4AF3-BD87-487C3297E7B4} = {D1D1B120-1E5D-4494-8867-BFD54260344B}
+		{56253D65-A6E6-448D-B049-57BB3D6CEF44} = {D1D1B120-1E5D-4494-8867-BFD54260344B}
+		{922E7364-D080-48B3-AE0D-0F56B5B526DE} = {4E1500ED-A4D5-4771-A9A9-339D9B5B6408}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4332B965-F8A4-4C73-BEDA-D06B47D01B31}

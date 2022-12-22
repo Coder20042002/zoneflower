@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using zoneFlower.Application.Catalog.Common;
 using zoneFlower.Application.Catalog.Products;
 using zoneFlower.Data.EF;
 using zoneFlower.Utilities.Constants;
@@ -11,8 +12,13 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ZFlowerDbContext>(options => options.UseSqlServer(
     builder.Configuration.GetConnectionString(SystemConstants.MainConnectionString)
     )) ;
+
 //Declare DI
+builder.Services.AddTransient<IStorageService, FileStorageService>();
+
 builder.Services.AddTransient<IPublicProductService, PublicProductService>();
+builder.Services.AddTransient<IManageProductService, ManageProductService>();
+
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Swagger zoneflower Solution", Version = "v1" }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace zoneFlower.Utilities
+namespace zoneFlower.Utilities.Exceptions
 {
-    public class ZFlowerException:Exception
+    public class ZFlowerException : Exception
     {
         public ZFlowerException()
         {

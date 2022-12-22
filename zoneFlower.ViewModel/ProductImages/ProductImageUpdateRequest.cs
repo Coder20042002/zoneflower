@@ -5,10 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace zoneFlower.ViewModel.Catalog.Products
+namespace zoneFlower.ViewModel.ProductImages
 {
-    public class ProductImageCreateRequest
+    public class ProductImageUpdateRequest
     {
+        public int Id { get; set; }
+
         public string Caption { get; set; }
 
         public bool IsDefault { get; set; }

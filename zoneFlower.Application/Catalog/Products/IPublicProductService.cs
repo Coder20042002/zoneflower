@@ -10,7 +10,7 @@ namespace zoneFlower.Application.Catalog.Products
 {
     public interface IPublicProductService
     {
-        public Task< PagedResult<ProductViewModel>> GetAllByCategory(GetPublicProductPagingRequest request);
-        public Task<List<ProductViewModel>> GetAll();
+        public Task< PagedResult<ProductViewModel>> GetAllByCategory(string languageId,GetPublicProductPagingRequest request);
+     
     }
 }
