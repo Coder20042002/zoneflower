@@ -9,7 +9,7 @@ namespace zoneFlower.Application.System.User
 {
     public interface IUserService
     {
-        Task<string> Authenticate(LoginRequest request);
+        Task<string> Authencate(LoginRequest request);
         Task<bool> Register(RegisterRequest request);
     }
 }

@@ -23,13 +23,15 @@ namespace zoneFlower.BackendApi.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var resultToken= await _userService.Authenticate(request);
+            var resultToken= await _userService.Authencate(request);
             if(string.IsNullOrEmpty(resultToken))
             {
                 return BadRequest("Username or password is incorrect");
             }
             return Ok(new {token= resultToken});
         }
+
+
 
         [HttpPost("register")]
         [AllowAnonymous]
