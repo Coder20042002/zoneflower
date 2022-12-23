@@ -1,14 +1,18 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using zoneFlower.Application.Catalog.Common;
 using zoneFlower.Application.Catalog.Products;
+using zoneFlower.Application.System.User;
 using zoneFlower.Data.EF;
+using zoneFlower.Data.Entities;
 using zoneFlower.Utilities.Constants;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<ZFlowerDbContext>().AddDefaultTokenProviders();
 builder.Services.AddDbContext<ZFlowerDbContext>(options => options.UseSqlServer(
     builder.Configuration.GetConnectionString(SystemConstants.MainConnectionString)
     )) ;
@@ -18,6 +22,10 @@ builder.Services.AddTransient<IStorageService, FileStorageService>();
 
 builder.Services.AddTransient<IPublicProductService, PublicProductService>();
 builder.Services.AddTransient<IManageProductService, ManageProductService>();
+builder.Services.AddTransient<UserManager<AppUser>, UserManager<AppUser>>();
+builder.Services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
+builder.Services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();
+builder.Services.AddTransient<IUserService, UserService>();
 
 builder.Services.AddSwaggerGen(c =>
 {
