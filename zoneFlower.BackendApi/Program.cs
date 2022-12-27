@@ -1,3 +1,5 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -10,14 +12,12 @@ using zoneFlower.Application.System.User;
 using zoneFlower.Data.EF;
 using zoneFlower.Data.Entities;
 using zoneFlower.Utilities.Constants;
-
-
-
+using zoneFlower.ViewModel.System.User;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllers();
+
 builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<ZFlowerDbContext>().AddDefaultTokenProviders();
 builder.Services.AddDbContext<ZFlowerDbContext>(options => options.UseSqlServer(
     builder.Configuration.GetConnectionString(SystemConstants.MainConnectionString)
@@ -33,7 +33,12 @@ builder.Services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
 builder.Services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();
 builder.Services.AddTransient<IUserService, UserService>();
 
+//builder.Services.AddTransient<IValidator<LoginRequest>, LoginRequestValidator>();
 
+//builder.Services.AddTransient<IValidator<RegisterRequest>, RegisterRequestValidator>();
+
+builder.Services.AddControllers()
+    .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
 
 builder.Services.AddSwaggerGen(c =>
 {
