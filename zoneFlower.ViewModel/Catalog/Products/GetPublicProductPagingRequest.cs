@@ -9,7 +9,6 @@ namespace zoneFlower.ViewModel.Catalog.Products
 {
     public class GetPublicProductPagingRequest : PagingResultBase
     {
-        public string LanguageId { get; set; }
         public int? CategoryId { get; set; }
     }
 }
