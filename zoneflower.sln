@@ -23,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.Host", "3.Host", "{4E1500
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0.Solution", "0.Solution", "{89F0585D-9B15-447F-853A-110CEE4F3F73}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zoneFlower.AdminApp", "zoneFlower.AdminApp\zoneFlower.AdminApp.csproj", "{14C2F9B9-2B18-47E4-B0B4-6E56E9D07770}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{922E7364-D080-48B3-AE0D-0F56B5B526DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{922E7364-D080-48B3-AE0D-0F56B5B526DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{922E7364-D080-48B3-AE0D-0F56B5B526DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14C2F9B9-2B18-47E4-B0B4-6E56E9D07770}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14C2F9B9-2B18-47E4-B0B4-6E56E9D07770}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14C2F9B9-2B18-47E4-B0B4-6E56E9D07770}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14C2F9B9-2B18-47E4-B0B4-6E56E9D07770}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +70,7 @@ Global
 		{1B4051E4-9E42-4AF3-BD87-487C3297E7B4} = {D1D1B120-1E5D-4494-8867-BFD54260344B}
 		{56253D65-A6E6-448D-B049-57BB3D6CEF44} = {D1D1B120-1E5D-4494-8867-BFD54260344B}
 		{922E7364-D080-48B3-AE0D-0F56B5B526DE} = {4E1500ED-A4D5-4771-A9A9-339D9B5B6408}
+		{14C2F9B9-2B18-47E4-B0B4-6E56E9D07770} = {4E1500ED-A4D5-4771-A9A9-339D9B5B6408}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4332B965-F8A4-4C73-BEDA-D06B47D01B31}
