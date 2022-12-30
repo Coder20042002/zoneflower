@@ -20,31 +20,32 @@ namespace zoneFlower.Application.System.User
         private readonly SignInManager<AppUser> _signInManager;
         private readonly RoleManager<AppRole> _roleManager;
         private readonly IConfiguration _config;
-        public UserService(UserManager<AppUser> userManager,SignInManager<AppUser> signInManager,RoleManager<AppRole> roleManager,IConfiguration config)
+        public UserService(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, RoleManager<AppRole> roleManager, IConfiguration config)
         {
-            this._userManager=userManager;
-            this._signInManager=signInManager;
+            this._userManager = userManager;
+            this._signInManager = signInManager;
             this._roleManager = roleManager;
             this._config = config;
         }
         public async Task<string> Authencate(LoginRequest request)
         {
-            var user=await _userManager.FindByNameAsync(request.UserName);
-            if (user == null) 
-            return null;
+            var user = await _userManager.FindByNameAsync(request.UserName);
+            if (user == null)
+                return null;
 
-            var result =await _signInManager.PasswordSignInAsync(user, request.Password,request.RemeberMe,true);
-            if(!result.Succeeded)
+            var result = await _signInManager.PasswordSignInAsync(user, request.Password, request.RemeberMe, true);
+            if (!result.Succeeded)
             {
                 return null;
             }
 
-            var roles=await _userManager.GetRolesAsync(user);
+            var roles = await _userManager.GetRolesAsync(user);
             var claims = new[]
             {
                 new Claim(ClaimTypes.Email,user.Email),
                 new Claim(ClaimTypes.GivenName,user.FirstName),
-                new Claim(ClaimTypes.Role,string.Join(";",roles))
+                new Claim(ClaimTypes.Role,string.Join(";",roles)),
+                new Claim(ClaimTypes.Name,request.UserName)
             };
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Tokens:Key"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -70,7 +71,7 @@ namespace zoneFlower.Application.System.User
                 UserName = request.UserName
             };
             var result = await _userManager.CreateAsync(user, request.Password);
-            if(result.Succeeded)
+            if (result.Succeeded)
             {
                 return true;
             }
